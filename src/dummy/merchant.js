@@ -1,0 +1,87 @@
+export function getMerchants() {
+    const merchants = [
+        {
+            id: 1,
+            nama: "Warung Sederhana",
+            provinsi_name: "Jawa Barat",
+            kota_name: "Bekasi",
+            kecamatan_name: "Cikarang Utara",
+            kelurahan_name: "Karang Asih",
+        },
+        {
+            id: 2,
+            nama: "Toko Elektronik Jaya",
+            provinsi_name: "DKI Jakarta",
+            kota_name: "Jakarta Selatan",
+            kecamatan_name: "Kebayoran Baru",
+            kelurahan_name: "Gandaria Utara",
+        },
+        {
+            id: 3,
+            nama: "Restoran Nusantara",
+            provinsi_name: "Jawa Tengah",
+            kota_name: "Semarang",
+            kecamatan_name: "Candisari",
+            kelurahan_name: "Jatingaleh",
+        },
+        {
+            id: 4,
+            nama: "Minimarket Sejahtera",
+            provinsi_name: "Banten",
+            kota_name: "Tangerang",
+            kecamatan_name: "Karawaci",
+            kelurahan_name: "Nusa Jaya",
+        },
+        {
+            id: 5,
+            nama: "Cafe Kopi Kita",
+            provinsi_name: "DI Yogyakarta",
+            kota_name: "Yogyakarta",
+            kecamatan_name: "Umbulharjo",
+            kelurahan_name: "Semaki",
+        },
+        {
+            id: 6,
+            nama: "Warung Sederhana",
+            provinsi_name: "Jawa Barat",
+            kota_name: "Bekasi",
+            kecamatan_name: "Cikarang Utara",
+            kelurahan_name: "Karang Asih",
+        },
+        {
+            id: 7,
+            nama: "Toko Elektronik Jaya",
+            provinsi_name: "DKI Jakarta",
+            kota_name: "Jakarta Selatan",
+            kecamatan_name: "Kebayoran Baru",
+            kelurahan_name: "Gandaria Utara",
+        },
+        {
+            id: 8,
+            nama: "Restoran Nusantara",
+            provinsi_name: "Jawa Tengah",
+            kota_name: "Semarang",
+            kecamatan_name: "Candisari",
+            kelurahan_name: "Jatingaleh",
+        },
+        {
+            id: 9,
+            nama: "Minimarket Sejahtera",
+            provinsi_name: "Banten",
+            kota_name: "Tangerang",
+            kecamatan_name: "Karawaci",
+            kelurahan_name: "Nusa Jaya",
+        },
+        {
+            id: 10,
+            nama: "Cafe Kopi Kita",
+            provinsi_name: "DI YOGYAKARTA",
+            provinsi_code: "91",
+            kota_name: "KOTA YOGYAKARTA",
+            kecamatan_name: "UMBULHARJO",
+            kelurahan_name: "SEMAKI",
+        },
+    ];
+
+    return merchants;
+}

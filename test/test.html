@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
+  <style>
+    body {
+      overflow-x: hidden;
+    }
+
+    .mont {
+      font-family: "Montserrat", sans-serif;
+    }
+
+    .reveal {
+      height: 200vh;
+      position: relative;
+    }
+
+    .reveal-enter {
+      opacity: 0;
+
+      transform:
+        translateY(-60px);
+
+      transition:
+        transform .8s ease,
+        opacity 1s ease;
+
+    }
+
+    .reveal-right {
+      opacity: 0;
+
+      transform:
+        translateX(-60px);
+
+      transition:
+        transform .8s ease,
+        opacity 1s ease;
+
+    }
+
+    .reveal-enter.show {
+      opacity: 1;
+      transform:
+        translateY(0);
+    }
+
+    .reveal-right.show {
+      opacity: 1;
+      transform:
+        translateX(0);
+    }
+
+    .stage {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .layer {
+      position: absolute;
+      inset: 0;
+    }
+
+    .horizontal {
+      position: relative;
+      height: 300vw;
+    }
+
+    .track {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .slider {
+      display: flex;
+      width: 700vw;
+      height: 100vh;
+      transform: translateX(0);
+      will-change: transform;
+    }
+
+    .panel {
+      width: 100vw;
+      height: 100vh;
+      flex-shrink: 0;
+    }
+
+    #textCard {
+      transition: color 1s ease-out;
+      color: white;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade {
+      transition: all 0.7s ease-in-out;
+    }
+
+    .card {
+      background: white;
+      color: black;
+      border-radius: 28px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .process-line {
+      position: absolute;
+      left: 1%;
+      right: 1%;
+      top: 50%;
+      height: 7px;
+      background: black;
+
+      transform:
+        translateY(-50%) scaleX(0);
+
+      transform-origin: left;
+
+      transition:
+        transform 2.5s ease;
+
+      z-index: 0;
+    }
+
+    .process-line.show {
+      transform:
+        translateY(-50%) scaleX(1);
+    }
+
+    .cta-link {
+      position: relative;
+      display: inline-block;
+    }
+
+    .cta-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 100%;
+      height: 4px;
+      background: black;
+      transform:
+        scaleX(0);
+      transform-origin: left;
+      transition:
+        transform .45s ease;
+    }
+
+    .cta-link:hover::after {
+      transform:
+        scaleX(1);
+    }
+
+    .cta-link-white {
+      position: relative;
+      display: inline-block;
+    }
+
+    .cta-link-white::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 2px;
+      background: white;
+      transform:
+        scaleX(0);
+      transform-origin: left;
+      transition:
+        transform .45s ease;
+    }
+
+    .cta-link-white:hover::after {
+      transform:
+        scaleX(1);
+    }
+
+    .slideshow-track {
+      width: calc(260px * 20);
+      animation: slide-left 60s linear infinite;
+      padding-bottom: 10px;
+    }
+
+    .slideshow-track img {
+      user-select: none;
+      width: fit-content;
+      height: 70px;
+      margin-right: 1.5rem;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+      padding: 0.25rem;
+    }
+
+    @keyframes slide-left {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-gray-200">
+
+  <!-- NAVBAR -->
+  <nav id="navbar" class="mont fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-gray-200 translate-y-0">
+    <div class="max-w-7xl mx-auto px-10 h-20 flex items-center justify-between">
+      <div data-aos="fade-down" data-aos-duration="600" class="text-3xl font-bold flex items-center gap-x-3">
+        <img src="https://xguhvxytcmvjqvmianuo.supabase.co/storage/v1/object/public/images/ui/head.png" alt=""
+          class="size-12" />
+        <div class="">SMEDI</div>
+      </div>
+      <div class="flex gap-7 font-medium text-lg pr-4">
+        <a data-aos="fade-down" data-aos-duration="600" href="#">Home</a>
+        <a data-aos="fade-down" data-aos-duration="600" data-aos-delay="100" href="#">About</a>
+        <a data-aos="fade-down" data-aos-duration="600" data-aos-delay="200" href="#">Merchant</a>
+        <a data-aos="fade-down" data-aos-duration="600" data-aos-delay="300" href="#">Contact</a>
+        <a data-aos="fade-down" data-aos-duration="600" data-aos-delay="400" href="#">Sign in</a>
+      </div>
+    </div>
+    <div class="border-b border-gray-400 mx-20"></div>
+  </nav>
+
+  <!-- MAIN -->
+  <section class="h-screen bg-gray-200 flex">
+    <div data-aos="fade-up" data-aos-duration="700" class="mont w-3/5 px-14 flex flex-col justify-center">
+      <div class="text-5xl font-bold">Small Medium Enterprise</div>
+      <div class="text-5xl font-bold pb-4">Discount Indonesia</div>
+      <div class="pr-10 font-medium text-lg">
+        SMEDI adalah Sistem Siskon dengan Metode Scan Qr-code. Sistem ini
+        Bertujuan untuk Meningkatkan Pembelian di UMKM yang Menggunakan Sistem
+        SMEDI. Pendaftaran Member Terbuka untuk Umum Tanpa Dikenai Biaya
+        Apapun.
+      </div>
+    </div>
+    <div data-aos="fade-up" data-aos-duration="700" data-aos-delay="200" class="w-2/5 flex items-center h-screen">
+      <img src="https://xguhvxytcmvjqvmianuo.supabase.co/storage/v1/object/public/images/ui/tablet.png" alt=""
+        class="w-64 h-min ml-0.5" />
+      <img src="https://xguhvxytcmvjqvmianuo.supabase.co/storage/v1/object/public/images/ui/hp.png" alt=""
+        class="w-24 h-min" />
+      <div class="absolute z-200 pl-[12.5px]">
+        <div class="bg-white w-[232px] h-[167px] rounded-lg cursor-pointer">
+          <!-- tablet -->
+          <div id="slideshow" onclick="showPage()"
+            class="absolute w-[232px] h-[167px] rounded-lg flex flex-col items-center justify-center fade">
+            <div class="w-full h-full rounded-lg overflow-hidden relative">
+              <div id="slider2" class="flex transition-transform duration-700 ease-in-out rounded-lg">
+                <img src="https://xguhvxytcmvjqvmianuo.supabase.co/storage/v1/object/public/images/ui/mini1.png"
+                  class="w-[232px] h-[167px] object-cover flex-shrink-0" />
+                <img src="https://xguhvxytcmvjqvmianuo.supabase.co/storage/v1/object/public/images/ui/mini2.png"
+                  class="w-[232px] h-[167px] object-cover flex-shrink-0" />
+                <img src="https://xguhvxytcmvjqvmianuo.supabase.co/storage/v1/object/public/images/ui/mini3.png"
+                  class="w-[232px] h-[167px] object-cover flex-shrink-0" />
+              </div>
+            </div>
+          </div>
+          <!-- HALAMAN SATU -->
+          <div id="pageOne"
+            class="absolute w-[232px] h-[167px] rounded-lg flex flex-col items-center justify-center bg-white text-black fade opacity-0 pointer-events-none px-6">
+            <div class="flex items-center w-full justify-center">
+              <img src="https://xguhvxytcmvjqvmianuo.supabase.co/storage/v1/object/public/images/ui/logo.png"
+                class="w-11 h-9" />
+              <div class="text-xl font-semibold">SMEDI</div>
+            </div>
+            <p class="text-sm text-center pb-1">
+              Silahkan klik mulai untuk scan qr-code kamu.
+            </p>
+            <button class="text-sm border border-gray-300 px-2.5 pb-1 pt-0.5 rounded-lg bg-red-500 text-white">
+              Mulai
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE2 -->
+  <section class="reveal">
+    <div class="stage">
+      <!-- BG PAGE2 -->
+      <div class="layer mont bg-black text-white flex flex-col items-center justify-center">
+        <div data-aos="fade-up" data-aos-duration="700" class="text-7xl font-bold pb-5 flex">
+          Kenapa <div class="px-5 text-red-500">SMEDI</div> dibuat?
+        </div>
+        <div data-aos="fade-up" data-aos-duration="700" data-aos-delay="200" class="text-center px-32 text-xl">
+          Banyak sistem diskon masih berjalan secara manual. Pelanggan harus
+          menunjukkan voucher, merchant melakukan pengecekan, dan proses
+          transaksi menjadi lebih panjang. Di sisi lain, penggunaan promo
+          sering kali tidak tercatat dan sulit untuk dianalisis.
+        </div>
+        <div data-aos="fade-up" data-aos-duration="700" data-aos-delay="300" class="text-center px-32 text-xl pt-2">
+          Smedi dibuat untuk menyederhanakan proses tersebut. Dengan satu kali
+          scan QR, diskon dapat diterapkan secara lebih cepat, lebih praktis,
+          dan lebih mudah dipantau.
+        </div>
+        <div data-aos="fade-up" data-aos-duration="600" data-aos-delay="500" class="pt-10 italic text-xl font-medium">
+          Instant - Trackable - Modern
+        </div>
+      </div>
+
+      <!-- BG BARU -->
+      <div id="newBg" class="layer bg-gray-200 translate-y-[-100%] flex items-center justify-center">
+        <div id="newContent" class="w-full px-10 mont ">
+          <div id="parallaxContent" class="text-6xl font-bold mb-10 reveal-enter justify-center flex">Cara Menggunakan
+            <div class="pl-4 text-red-500">SMEDI</div>
+          </div>
+          <div class="relative flex justify-center items-center">
+            <div id="processLine" class="process-line">
+            </div>
+            <div class="grid grid-cols-4 flex items-center justify-center gap-10 font-medium">
+              <div class="flex items-center">
+                <div class="card reveal-right text-center shadow-lg">
+                  <div class="pb-2">STEP 1</div>
+                  <div class="text-[17px] pb-2">Arahkan kode Qr milikmu ke device SMEDI yang ada di Merchant.</div>
+                  <img src="https://xguhvxytcmvjqvmianuo.supabase.co/storage/v1/object/public/images/ui/work1.png"
+                    alt="">
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div class="card reveal-right text-center shadow-lg">
+                  <div class="pb-2">STEP 2</div>
+                  <div class="text-[17px] pb-2">Proses Validasi apakah ada Qr-code tersebut terdaftar di database Smedi.
+                  </div>
+                  <img src="https://xguhvxytcmvjqvmianuo.supabase.co/storage/v1/object/public/images/ui/work2.png"
+                    alt="">
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div class="card reveal-right text-center shadow-lg">
+                  <div class="pb-2">STEP 3</div>
+                  <div class="text-[17px] pb-2">Merchant input nominal pembayaran yang akan di kurangi dengan diskon.
+                  </div>
+                  <img src="https://xguhvxytcmvjqvmianuo.supabase.co/storage/v1/object/public/images/ui/work3.png"
+                    alt="">
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div class="card reveal-right text-center shadow-lg">
+                  <div class="pb-2">STEP 4</div>
+                  <div class="text-[17px] pb-2">Pembayaran melalui qris setelah member mendapat diskon dari merchant.
+                  </div>
+                  <img src="https://xguhvxytcmvjqvmianuo.supabase.co/storage/v1/object/public/images/ui/work4.png"
+                    alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- HORIZONTAL -->
+  <section class="horizontal mt-14 mont">
+    <div class="track">
+      <div id="slider" class="slider">
+        <section class="panel bg-gray-200">
+          <div data-aos="fade-right" data-aos-duration="600" class="text-center pt-20 text-6xl font-bold">
+            Keuntungan Menjadi Member
+          </div>
+          <div data-aos="fade-right" data-aos-duration="600" data-aos-delay="300" class="flex px-14 pt-16">
+            <div class="w-[60%]">
+              <img src="https://xguhvxytcmvjqvmianuo.supabase.co/storage/v1/object/public/images/ui/dash.png" alt=""
+                class="rounded-lg">
+            </div>
+            <div class="w-[40%] pl-8 pt-6 font-medium text-xl flex flex-col gap-y-5">
+              <div class="">1. Mendapatkan diskon dari merchant yang memakai sistem SMEDI.</div>
+              <div class="">2. Penggunaan diskon tinggal scan qr.</div>
+              <div class="">3. Mendapatkan dashboard untuk melihat riwayat transaksi.</div>
+              <div class="">4. Proses pendaftaran member tidak dipungut biaya.</div>
+            </div>
+          </div>
+        </section>
+        <section class="panel bg-gray-200">
+          <div class="text-center pt-20 text-6xl font-bold">
+            Keuntungan Menjadi Merchant
+          </div>
+          <div class="flex px-14 pt-16">
+            <div class="w-[60%]">
+              <img src="https://xguhvxytcmvjqvmianuo.supabase.co/storage/v1/object/public/images/ui/dash.png" alt=""
+                class="rounded-lg">
+            </div>
+            <div class="w-[40%] pl-8 pt-6 font-medium text-xl flex flex-col gap-y-5">
+              <div class="">1. Mendapat device SMEDI berupa sebuah tablet.</div>
+              <div class="">2. Mendapatkan dashboard untuk melihat memantau traffic transaksi.</div>
+              <div class="">3. Bisa setting diskon untuk sistem SMEDI.</div>
+              <div class="">4. Bisa posting iklan untuk menarik pelanggan.</div>
+            </div>
+          </div>
+        </section>
+        <section class="panel bg-gray-200">
+          <div class="text-center pt-20 text-6xl font-bold">
+            Syarat dan Ketentuan Registrasi
+          </div>
+          <div class="px-20 pt-10">
+            <div class="font-semibold text-3xl pb-2">Member</div>
+            <div class="font-medium text-xl">1. Bersedia melengkapi informasi seperti alamat, nomor telepon, organisasi
+              dan foto profil.</div>
+            <div class="font-medium text-xl">2. Setiap pengguna hanya diperbolehkan memiliki satu akun aktif.</div>
+            <div class="font-medium text-xl">3. Member diharapkan menjaga kerahasiaan data dan QR Code member.</div>
+            <div class="font-medium text-xl">4. Dilarang membagikan QR Code kepada pihak lain untuk memperoleh
+              keuntungan yang tidak sah.</div>
+            <div class="font-medium text-xl">5. Pendaftaran gratis tanpa dipungut biaya.</div>
+            <div class="font-semibold text-3xl pb-2 pt-8">Merchant</div>
+            <div class="font-medium text-xl">1. Bersedia melengkapi informasi seperti lokasi, nomor telepon, dan qris
+              payload (static).</div>
+            <div class="font-medium text-xl">2. Untuk saat ini Tim SMEDI hanya dapat melayani area solo.</div>
+            <div class="font-medium text-xl">3. Dengan mendaftar sebagai merchant, pengguna dianggap menyetujui seluruh
+              ketentuan yang berlaku.</div>
+            <div class="font-medium text-xl">4. Pendaftaran akan dikenai biaya.</div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE4 -->
+  <section class="h-screen bg-neutral-950 text-white">
+    <div class="pt-16 text-center text-black bg-gray-200 h-[66%] rounded-b-[180px] overflow-hidden">
+      <div class="text-7xl pt-2 font-bold text-center text-black">Get More Customers</div>
+      <div class="flex text-7xl font-bold justify-center">
+        <a href="https://api-smedi.thsite.top/" class="justify-center text-black cursor-pointer cta-link flex">Let's
+          Grow
+          Smarter with <div class="text-red-500 pl-5">SMEDI</div></a>
+      </div>
+      <div class="slideshow-container pt-28 w-full overflow-hidden relative" id="slideLogo">
+        <div class="slideshow-track flex" aria-label="Logo slideshow">
+          <img src="https://www.freepnglogos.com/uploads/adidas-logo-png-black-0.png" alt="Logo 1" />
+          <img src="https://www.freepnglogos.com/uploads/netflix-logo-0.png" alt="Logo 1" />
+          <img
+            src="https://www.freepnglogos.com/uploads/logo-chatgpt-png/black-chatgpt-logo-circle-symbol-black-png-0.png"
+            alt="Logo 1" />
+          <img
+            src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
+            alt="Logo 1" />
+          <img src="https://www.freepnglogos.com/uploads/fedex-logo-png/fedex-emblem-delivery-business-logo-2.png"
+            alt="Logo 1" />
+          <img src="https://www.freepnglogos.com/uploads/adidas-logo-png-black-0.png" alt="Logo 1" />
+          <img src="https://www.freepnglogos.com/uploads/netflix-logo-0.png" alt="Logo 1" />
+          <img
+            src="https://www.freepnglogos.com/uploads/logo-chatgpt-png/black-chatgpt-logo-circle-symbol-black-png-0.png"
+            alt="Logo 1" />
+          <img
+            src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
+            alt="Logo 1" />
+          <img src="https://www.freepnglogos.com/uploads/fedex-logo-png/fedex-emblem-delivery-business-logo-2.png"
+            alt="Logo 1" />
+          <img src="https://www.freepnglogos.com/uploads/adidas-logo-png-black-0.png" alt="Logo 1" />
+          <img src="https://www.freepnglogos.com/uploads/netflix-logo-0.png" alt="Logo 1" />
+          <img
+            src="https://www.freepnglogos.com/uploads/logo-chatgpt-png/black-chatgpt-logo-circle-symbol-black-png-0.png"
+            alt="Logo 1" />
+          <img
+            src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
+            alt="Logo 1" />
+          <img src="https://www.freepnglogos.com/uploads/fedex-logo-png/fedex-emblem-delivery-business-logo-2.png"
+            alt="Logo 1" />
+          <img src="https://www.freepnglogos.com/uploads/adidas-logo-png-black-0.png" alt="Logo 1" />
+          <img src="https://www.freepnglogos.com/uploads/netflix-logo-0.png" alt="Logo 1" />
+          <img
+            src="https://www.freepnglogos.com/uploads/logo-chatgpt-png/black-chatgpt-logo-circle-symbol-black-png-0.png"
+            alt="Logo 1" />
+          <img
+            src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
+            alt="Logo 1" />
+          <img src="https://www.freepnglogos.com/uploads/fedex-logo-png/fedex-emblem-delivery-business-logo-2.png"
+            alt="Logo 1" />
+        </div>
+      </div>
+    </div>
+
+    <div class="mont">
+      <div class="flex pt-16 pb-16 px-12 text-[25px] font-medium">
+        <div class="mr-6">SMEDI</div>
+        <div class="ml-64 cursor-pointer cta-link-white">Home</div>
+        <div class="ml-16 cursor-pointer cta-link-white">How it's work</div>
+        <div class="ml-16 cursor-pointer cta-link-white">Contact us</div>
+        <div class="flex gap-x-10 pl-20">
+          <img src="https://xguhvxytcmvjqvmianuo.supabase.co/storage/v1/object/public/images/ui/6.png" alt=""
+            class="w-10 cursor-pointer">
+          <img src="https://xguhvxytcmvjqvmianuo.supabase.co/storage/v1/object/public/images/ui/7.png" alt=""
+            class="w-10 cursor-pointer">
+          <img src="https://xguhvxytcmvjqvmianuo.supabase.co/storage/v1/object/public/images/ui/8.png" alt=""
+            class="w-10 cursor-pointer">
+        </div>
+      </div>
+      <div class="text-center px-16 text-[17px] pt-5 border-t mx-20 mt-2 text-gray-300">©2025 SMEDI Team. | All Rights
+        Reserved and may not
+        be used without permission</div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      AOS.init({
+        duration: 1000,
+        once: true,
+      });
+    });
+
+    const reveal = document.querySelector(".reveal");
+    const bg = document.getElementById("newBg");
+    const horizontal = document.querySelector(".horizontal");
+    const slider = document.getElementById("slider");
+    const navbar = document.getElementById("navbar");
+    const newContent = document.getElementById("newContent");
+    const parallaxContent = document.getElementById("parallaxContent");
+
+    const revealItems =
+      [
+        ...document.querySelectorAll(
+          "#newBg .reveal-right"
+        )
+      ];
+    let animated = false;
+
+    let contentShown = false;
+    let lastScroll = 0;
+
+    const line = document.getElementById("processLine");
+    let played = false;
+
+    function easeInOutQuad(t) {
+      return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+    }
+    window.addEventListener("scroll", () => {
+      const scroll = window.scrollY;
+      if (scroll > window.innerHeight - 100) {
+        navbar.style.transform =
+          scroll > lastScroll ? "translateY(-100%)" : "translateY(0)";
+      } else {
+        navbar.style.transform = "translateY(0)";
+      }
+
+      lastScroll = scroll;
+
+      const rect = reveal.getBoundingClientRect();
+      const progress = Math.max(
+        0,
+        Math.min(-rect.top / (rect.height - window.innerHeight), 1),
+      );
+
+      const eased = easeInOutQuad(Math.max(0, (progress - 0.2) / 0.8));
+
+      bg.style.transform = `translateY(${-100 + eased * 100}%)`;
+
+      if (
+        progress >= 0.99
+        &&
+        !animated && !played
+      ) {
+
+        animated = true;
+        parallaxContent.classList.add("show");
+        revealItems.forEach(
+          (
+            el,
+            i
+          ) => {
+            setTimeout(
+              () => {
+                el.classList.add(
+                  "show"
+                );
+              },
+              i * 100
+            );
+          }
+        );
+
+        played = true;
+        setTimeout(
+          () => {
+            line.classList.add(
+              "show"
+            );
+          },
+          600
+        );
+      }
+
+      const rect2 = horizontal.getBoundingClientRect();
+      const total = horizontal.offsetHeight - window.innerHeight;
+      const raw =
+        Math.max(
+          0,
+          Math.min(
+            (-rect2.top)
+            / total,
+            1
+          )
+        );
+
+      const move =
+        Math.min(
+          raw / .9,
+          1
+        );
+
+
+      slider.style.transform =
+        `translateX(-${move * 200
+        }vw)`;
+    });
+
+    const slider2 = document.getElementById("slider2");
+    const slideshow = document.getElementById("slideshow");
+    const pageOne = document.getElementById("pageOne");
+    let index = 0;
+    const imagesCount = slider2.children.length;
+    setInterval(() => {
+      index = (index + 1) % imagesCount;
+      slider2.style.transform = `translateX(-${index * 100}%)`;
+    }, 2500);
+
+    function showPage() {
+      slideshow.classList.remove("opacity-100", "blur-0");
+      slideshow.classList.add("opacity-0", "blur-md", "pointer-events-none");
+      pageOne.classList.remove("opacity-0", "blur-md", "pointer-events-none");
+      pageOne.classList.add("opacity-100", "blur-0");
+      setTimeout(() => {
+        pageOne.classList.remove("opacity-100", "blur-0");
+        pageOne.classList.add("opacity-0", "blur-md", "pointer-events-none");
+        slideshow.classList.remove(
+          "opacity-0",
+          "blur-md",
+          "pointer-events-none",
+        );
+        slideshow.classList.add("opacity-100", "blur-0");
+      }, 10000);
+    }
+  </script>
+</body>
+
+</html>
