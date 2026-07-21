@@ -21,7 +21,7 @@ export default function Dashboard() {
   const [monthlyData, setMonthlyData] = useState([]);
   const [selectedMonth, setSelectedMonth] = useState(null);
   const [mode, setMode] = useState("daily");
-  const baseApiUrl = "http://localhost:8000/api";
+  const baseApiUrl = import.meta.env.VITE_API_URL;
   const token = localStorage.getItem("token");
   const isDesktop = useMediaQuery({ minWidth: 1024 });
   const isMobile = useMediaQuery({ maxWidth: 767 });
