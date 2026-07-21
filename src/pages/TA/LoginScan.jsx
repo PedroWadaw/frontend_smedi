@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import FormInputWhite from "../../components/ui/FormInputWhite";
+import FormInputWhite from "../../Components/ui/FormInputWhite";
 import { useLoginDev } from "../../hooks/useLoginDev";
 
 const fields = [
