@@ -1,6 +1,6 @@
 import Galaxy from '../Components/Galaxy';
 import React, { useEffect, useState } from "react";
-import FormInput from "../components/ui/FormInput";
+import FormInput from "../Components/ui/FormInput";
 import { useRegisterStepTwo } from "../hooks/useRegisterStepTwo";
 import axios from "axios";
 import { useRef } from "react";

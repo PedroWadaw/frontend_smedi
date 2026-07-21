@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Galaxy from '../Components/Galaxy';
 import LoginGoogle from '../Components/ui/LoginGoogle';
-import FormInput from "../components/ui/FormInput";
+import FormInput from "../Components/ui/FormInput";
 import { useLogin } from "../hooks/useLogin";
 
 const fields = [
