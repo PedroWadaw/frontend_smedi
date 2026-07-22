@@ -47,7 +47,7 @@ export default function Login() {
 
         <div className="z-10 w-full font-mont max-w-sm lg:max-w-md p-8 rounded-2xl bg-white/10 backdrop-blur-xl shadow-xl border border-white/20">
           <div className="text-center mb-6">
-            <h1 className="text-3xl font-bold text-white">Welcome</h1>
+            <h1 className="text-3xl font-bold text-white">Welcome back</h1>
             <p className="text-white/70">Sign in to your account</p>
           </div>
 
