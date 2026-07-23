@@ -39,6 +39,7 @@ export default function RegisterMember() {
     }
   };
 
+  console.log("API:", import.meta.env.VITE_API_URL);
 
   return (
     <div className="w-full h-screen bg-black overflow-hidden flex items-center justify-center">
